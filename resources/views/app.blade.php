@@ -15,7 +15,7 @@
     }
 
     label {
-      @apply block uppercase text-slate-700 mb-2
+      @apply block text-slate-700 mb-2
     }
 
     input, 
@@ -33,6 +33,7 @@
 </head>
 
 <body class="container mx-auto mt-10 mb-10 max-w-lg">
+  @livewire('create-poll')
   @livewireScripts
 </body>
 
