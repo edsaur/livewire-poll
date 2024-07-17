@@ -19,10 +19,14 @@ class CreatePoll extends Component
     public $options = [''];
 
     protected function rules() {
-        return ['title' => 'required', 'options' => 'required|array|min:1|max:10', 'options.*' => 'required|min:1|max:255']; 
+        return ['title' => 'required|min:3|max:50', 'options' => 'required|array|min:1|max:10', 'options.*' => 'required|min:1|max:255']; 
     }
 
-    protected $messages = ['option.*' => 'The option cannot be empty'];
+    protected $messages = ['options.*' => 'The option cannot be empty'];
+
+    public function updated($propertyName) {
+        $this->validateOnly($propertyName);
+    }
     
     public function render()
     {
@@ -49,5 +53,6 @@ class CreatePoll extends Component
 
         $this->reset(['title', 'options']);
 
+        $this->dispatch('pollCreated');
     }
 }
